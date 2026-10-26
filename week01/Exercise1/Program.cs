@@ -8,10 +8,10 @@ class Program
         string name = Console.ReadLine();
         Console.Write("What is your last name? ");
         string last_name = Console.ReadLine();
-        Console.WriteLine($"your name is {last_name}, {name} {last_name}");
+        Console.WriteLine($"your name is {last_name}, {name} {last_name}.");
     }
 }
 
 // Diferencia:
 // python es un interprete qe ejecuta los comandos ni bien se los ejecuta
-// C3 copila todo el programa antes de ejecutarlo 
+// C# copila todo el programa antes de ejecutarlo 
