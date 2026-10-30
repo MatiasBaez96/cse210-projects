@@ -16,13 +16,13 @@ class Program
     }
     static string PromptUserName()
     {
-        Console.Write("Please enter your name:");
+        Console.Write("Please enter your name: ");
         string name = Console.ReadLine();
         return name;
     }
     static int PromptUserNumber()
     {
-        Console.Write("Please enter your favorite number:");
+        Console.Write("Please enter your favorite number: ");
         string numberStr = Console.ReadLine();
         int numberInt = int.Parse(numberStr);
         return numberInt;   
