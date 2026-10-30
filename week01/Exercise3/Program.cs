@@ -6,7 +6,7 @@ class Program
     {
     
     Random random_OBJ = new Random();
-    int random_number = random_OBJ.Next(1,10);
+    int randomNumber = random_OBJ.Next(1,10);
     int count = 0; 
     int a;
 
@@ -21,25 +21,25 @@ class Program
         a = int.Parse(guess);
         count++;
 
-        if(a > random_number)
+        if(a > randomNumber)
         {
         Console.WriteLine("Lower");
         }
-        else if(a < random_number)
+        else if(a < randomNumber)
         {
         Console.WriteLine("Higther");
         }
         else
         {
-        
         Console.WriteLine("You guessed it!");
         Console.WriteLine($"Number of guesses: {count}");
+        
         
         Console.Write("Wanna play again? ");
         string answer = Console.ReadLine();
 
                 if(answer.ToLower() == "yes"){
-                    random_number = random_OBJ.Next(1,10);
+                    randomNumber = random_OBJ.Next(1,10);
                 }
                 else if(answer.ToLower() == "no"){
                     running = false;
