@@ -5,8 +5,8 @@ class Program
     static void Main(string[] args)
     {
     
-    Random random_OBJ = new Random();
-    int randomNumber = random_OBJ.Next(1,10);
+    Random randomObj = new Random();
+    int randomNumber = randomObj.Next(1,100);
     int count = 0; 
     int a;
 
@@ -39,7 +39,7 @@ class Program
         string answer = Console.ReadLine();
 
                 if(answer.ToLower() == "yes"){
-                    randomNumber = random_OBJ.Next(1,10);
+                    randomNumber = randomObj.Next(1,10);
                 }
                 else if(answer.ToLower() == "no"){
                     running = false;

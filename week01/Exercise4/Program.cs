@@ -7,13 +7,12 @@ class Program
     static void Main(string[] args)
     {
         List<int> numbers = new List<int>(); 
-     
-        
+         
         bool running = true;
         while(running)
         {
         
-        Console.Write("Insert a number: ");    
+        Console.Write("Enter number: ");    
         string numberStr = Console.ReadLine();
         int numberInt = int.Parse(numberStr);
 
@@ -25,20 +24,33 @@ class Program
                
                 int total = 0;
                 int largestNumber = 0; 
+                int smallestNumber = 1000; 
                 
                 for(int i = 0; i < numbers.Count; i++)
-                {
+                {   
                     total += numbers[i];
                     if(numbers[i] > largestNumber)
                     {
                         largestNumber = numbers[i];
                     }
+                    if(numbers[i] > 0 && numbers[i] < smallestNumber)
+                    {
+                        smallestNumber = numbers[i];
+                    }
                 }
 
                 Console.WriteLine($"total: {total}");
-                float average = (float)total / numbers.Count;
+                double average = (double)total / numbers.Count;
                 Console.WriteLine($"Average: {average}");
                 Console.WriteLine($"Largest Number: {largestNumber}");
+                Console.WriteLine($"The smallest positive number is: {smallestNumber}");
+                numbers.Sort();
+                Console.WriteLine("The sorted list is:");
+
+                foreach(int num in numbers)
+                {
+                    Console.WriteLine($"{num}");
+                }
                 running = false;
             }
            }
