@@ -3,7 +3,6 @@ using System.Threading.Tasks.Dataflow;
 
 public class Menu
 {   
-    bool oneTime = true;
     bool running = true;
     public void RunSystem()
     {   
@@ -23,7 +22,6 @@ public class Menu
             Console.Write("What would you like to do? ");
             string answer = Console.ReadLine();
             int answerInt= int.Parse(answer);
-
         
             if(answerInt == 1)
             {
@@ -52,10 +50,7 @@ public class Menu
                 journalObj.saveToFile();
             }
             else if(answerInt == 4){
-                // si cargo sin existir archivo
-                //solo doy mensaje y vuelvo
-                //<"ningun archivo guardado">
-                oneTime = false;
+              
                 journalObj.LoadFromFile();
                 
             }

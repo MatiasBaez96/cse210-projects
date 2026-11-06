@@ -1,5 +1,5 @@
 using System.Configuration.Assemblies;
-
+using System.Text.Json;
 
 public class Journal
 {    
@@ -17,17 +17,17 @@ public class Journal
          entry.Display();
         }
     }
+
     // recibir entrys / pero como y de donde?
     public void saveToFile()
     {
         //creo archivo y lo guardo
         Console.Write("Choose a file name: ");
         fileName = Console.ReadLine();
-        using var writer = new StreamWriter(fileName);
-
-        //NO FUNCIONA: si dejo en blanco 'fileName' da error
-        if(fileName != null)
+       
+        if(fileName != "")
         {   
+            using var writer = new StreamWriter(fileName);
             foreach(Entry entry in _entries)
             {
                 writer.Write(entry.getInformation());  
@@ -42,8 +42,11 @@ public class Journal
     {
            Console.Write("What is the file name? ");
            fileName = Console.ReadLine();
-           using var reader = new StreamReader(fileName);
-           string linea = "";
+
+        try
+        {
+            using var reader = new StreamReader(fileName);
+            string linea = "";
            
            CleanList();
            
@@ -59,7 +62,16 @@ public class Journal
             getEntry._date = date;
             getEntry._promptText = promptText;
             getEntry._entryText = entryText;
-            AddEntry(getEntry);        
+            AddEntry(getEntry);     
+        }
+        }
+        catch(FileNotFoundException fileNotFound)
+        {
+            Console.WriteLine($"Could not find file: {fileNotFound}");
+        }
+        catch(ArgumentException argumentException)
+        {
+            Console.WriteLine($"The value cannot be an empty string: {argumentException}");
         }
     }
     public void CleanList()
