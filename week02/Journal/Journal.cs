@@ -40,7 +40,7 @@ public class Journal
     }
     public void LoadFromFile()
     {
-           Console.Write("What is the file name?");
+           Console.Write("What is the file name? ");
            fileName = Console.ReadLine();
            using var reader = new StreamReader(fileName);
            string linea = "";

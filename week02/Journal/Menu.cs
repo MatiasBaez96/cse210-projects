@@ -17,8 +17,8 @@ public class Menu
             Console.WriteLine("Please select one of the fallowing choices");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
+            Console.WriteLine("3. Save");
+            Console.WriteLine("4. Load");
             Console.WriteLine("5. Quit");
             Console.Write("What would you like to do? ");
             string answer = Console.ReadLine();
@@ -49,15 +49,15 @@ public class Menu
             
             else if( answerInt == 3)
             {
+                journalObj.saveToFile();
+            }
+            else if(answerInt == 4){
                 // si cargo sin existir archivo
                 //solo doy mensaje y vuelvo
                 //<"ningun archivo guardado">
                 oneTime = false;
                 journalObj.LoadFromFile();
-            }
-            else if(answerInt == 4){
                 
-                journalObj.saveToFile();
             }
             else if(answerInt == 5)
             {
