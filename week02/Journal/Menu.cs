@@ -65,7 +65,7 @@ public class Menu
             }
             else
             {
-                
+               Console.WriteLine("You must select one of the options"); 
             }
             
         }
