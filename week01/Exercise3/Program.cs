@@ -9,7 +9,7 @@ class Program
     int randomNumber = randomObj.Next(1,101);
     int count = 0; 
     int a;
-
+    
     string guess;
     bool running = true;
     
