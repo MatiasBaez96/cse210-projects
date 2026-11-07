@@ -78,21 +78,10 @@ public class Journal
     {
         int entriesLen = _entries.Count;
       
-        //alamceno el len en otra variable y lo uso
-        //porque si uso la misma lista y remuevo un elemento
-        // el len cambia y se modifica la ejecucion del
         //bucle
         for(int i = 0; i < entriesLen; i++)
         {
             _entries.Remove(_entries[0]);
         }
-        //ANOTARLO EN LA LIBRETA Y DESMENUSAR PARA APRENDER ESTE DETALLE
-        //2do error: como remuevo el entry intento acceder
-        //a la posicion 1, pero como lo removi, esa pocision
-        //ya no existe en la lista.. 
-        //SOLUCION: PONER UN 'ZERO' , siempre se remueve del final
-        //hasta el princiopio,ZERO seria el ultimo numero a remover
-
-        
     }
 }

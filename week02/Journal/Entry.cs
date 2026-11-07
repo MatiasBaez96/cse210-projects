@@ -13,6 +13,5 @@ public class Entry
     {  
        string information =  $"date:{_date} - {_promptText} - {_entryText}\n";
        return information;
-      
     }
 }

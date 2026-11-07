@@ -20,6 +20,7 @@ public class Menu
             Console.WriteLine("4. Load");
             Console.WriteLine("5. Quit");
             Console.Write("What would you like to do? ");
+            
             string answer = Console.ReadLine();
             int answerInt= int.Parse(answer);
         
