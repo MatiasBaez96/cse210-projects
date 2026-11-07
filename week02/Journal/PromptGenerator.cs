@@ -31,7 +31,7 @@ public class PrompTGenerator
         };
        
         Random randomObj = new Random();
-        int number = randomObj.Next(1,_prompts.Count);
+        int number = randomObj.Next(0,_prompts.Count);
         string randomPrompt = _prompts[number];
 
         return randomPrompt;

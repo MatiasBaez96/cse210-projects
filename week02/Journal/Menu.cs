@@ -20,9 +20,11 @@ public class Menu
             Console.WriteLine("4. Load");
             Console.WriteLine("5. Quit");
             Console.Write("What would you like to do? ");
-            
-            string answer = Console.ReadLine();
-            int answerInt= int.Parse(answer);
+
+        try
+        {
+                string answer = Console.ReadLine();
+                int answerInt= int.Parse(answer);
         
             if(answerInt == 1)
             {
@@ -48,12 +50,11 @@ public class Menu
             
             else if( answerInt == 3)
             {
-                journalObj.saveToFile();
+                journalObj.SaveToFile();
             }
             else if(answerInt == 4){
               
-                journalObj.LoadFromFile();
-                
+                journalObj.LoadFromFile();        
             }
             else if(answerInt == 5)
             {
@@ -63,7 +64,11 @@ public class Menu
             {
                Console.WriteLine("You must select one of the options"); 
             }
-            
+        }
+            catch(FormatException formatException)
+            {
+                Console.WriteLine($"You need to enter a number : {formatException}");
+            }          
         }
     }
 }

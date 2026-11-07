@@ -19,7 +19,7 @@ public class Journal
     }
 
     // recibir entrys / pero como y de donde?
-    public void saveToFile()
+    public void SaveToFile()
     {
         //creo archivo y lo guardo
         Console.Write("Choose a file name: ");
@@ -30,7 +30,7 @@ public class Journal
             using var writer = new StreamWriter(fileName);
             foreach(Entry entry in _entries)
             {
-                writer.Write(entry.getInformation());  
+                writer.Write(entry.GetInformation());  
             }
         }
         else

@@ -9,7 +9,7 @@ public class Entry
      Console.WriteLine($"date:{_date} - {_promptText} - {_entryText}");
     }
 
-    public string getInformation()
+    public string GetInformation()
     {  
        string information =  $"date:{_date} - {_promptText} - {_entryText}\n";
        return information;
