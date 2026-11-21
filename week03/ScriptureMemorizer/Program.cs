@@ -1,4 +1,5 @@
-//Creativity: Random scripture selection from a list
+//Creativity: Added an option so the user can enter a scripture manually
+
 using System;
 using System.Collections.Generic;
 
