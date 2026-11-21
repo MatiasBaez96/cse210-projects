@@ -14,9 +14,9 @@ public class Scripture
     {
        
       _reference = reference;
-      string [] lista = text.Split(' ');    
+      string [] words = text.Split(' ');    
       
-      foreach(string w in lista)
+      foreach(string w in words)
       {
         _words.Add(new Word(w));
       }
@@ -25,9 +25,7 @@ public class Scripture
     public void HideRandomWords(int numberToHide)
     {       
             while(numberToHide > 0 && !IsCompletelyHidden())
-            {
-            //DIVIDIR EN 2 PASOS:
-            //Word wordToHide  = new Word(_words[numberToHide].GetDisplayText()); 
+            { 
             int index = _random.Next(_words.Count);
             Word wordToHide  = _words[index];
             if(!wordToHide.IsHidden())
@@ -40,19 +38,19 @@ public class Scripture
 
     public string GetDisplayText()
     {
-        string verse = _reference.GetDisplayText();
-        foreach(Word w in _words)
+        string displayText = _reference.GetDisplayText();
+        foreach(Word word in _words)
         {       
-         verse += " " + w.GetDisplayText();
+         displayText += " " + word.GetDisplayText();
         }    
-        return verse;    
+        return displayText;    
     }
 
     public bool IsCompletelyHidden()
     {
-        foreach(Word w in _words)
+        foreach(Word wordText in _words)
         {
-            if(!w.IsHidden())
+            if(!wordText.IsHidden())
             {
                 return false;
             }

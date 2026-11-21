@@ -7,9 +7,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        bool running = true;
-        bool manualMode = false;
-        List<(string book, int chapter, int verse, string text)> scriptures = new()
+        bool isRunning = true;
+        bool isManualMode = false;
+        int wordsToHide = 3;
+
+        List<(string book, int chapter, int startVerse, string text)> scriptures = new()
         {
             ("1 Nefi", 3, 7,
              "And it came to pass that I, Nephi, said unto my father: I will go and do the things which the Lord hath commanded, for I know that the Lord giveth no commandments unto the children of men, save he shall prepare a way for them that they may accomplish the thing which he hath commanded them."),
@@ -36,47 +38,46 @@ class Program
              "And when ye shall receive these things, I would exhort you that ye would ask God, the Eternal Father, in the name of Christ, if these things are not true; and if ye shall ask with a sincere heart, with real intent, having faith in Christ, he will manifest the truth of it unto you, by the power of the Holy Ghost.")
         };
 
-        // Elijo una escritura desde el inicio
-        // Hasta qe el programa termine
+      
         Random random = new Random();
         var chosen = scriptures[random.Next(scriptures.Count)];
 
-        Reference referenceObj = new(chosen.book, chosen.chapter, chosen.verse);
-        Scripture scriptureObj = new(referenceObj, chosen.text);
+        Reference reference = new(chosen.book, chosen.chapter, chosen.startVerse);
+        Scripture scripture = new(reference, chosen.text);
 
         Console.Clear();
-        Console.Write(scriptureObj.GetDisplayText());
+        Console.Write(scripture.GetDisplayText());
 
-        while (running)
+        while(isRunning)
         {
             Console.WriteLine();
-            Console.WriteLine("1. Press Enter to continue or press \"exit\" to finish");
+            Console.WriteLine("1. Press Enter to continue or type \"quit\" to finish");
             Console.WriteLine("2. Type \"2\" to enter your own scripture");
             Console.WriteLine();
             
-            //Agrego opcion para ingresar toda la informacion manual
+            
             string response = Console.ReadLine();
             if(response == "")
             {                                
-                scriptureObj.HideRandomWords(3); 
+                scripture.HideRandomWords(wordsToHide); 
             }
-            if (response.ToLower() == "exit" || scriptureObj.IsCompletelyHidden())
+            if (response.ToLower() == "quit" || scripture.IsCompletelyHidden())
             {
-                running = false;
+                isRunning = false;
             }
 
             Console.Clear();
-            Console.Write(scriptureObj.GetDisplayText());       
+            Console.Write(scripture.GetDisplayText());       
 
             if(response == "2")
             {   
                 Console.Clear();
-                running = false;
-                manualMode = true;     
+                isRunning = false;
+                isManualMode = true;     
             }
         }
     
-        while(manualMode)
+        while(isManualMode)
         {     
             Console.Write("Book: ");
             string book = Console.ReadLine();
@@ -89,31 +90,31 @@ class Program
                     
                 try
                 {
-                    int chapterInt = int.Parse(chapter);
-                    int verseInt = int.Parse(verse);
-                    Reference referenceObjManual = new(book, chapterInt, verseInt);
-                    Scripture scriptureObjManual = new(referenceObjManual, text);
+                    int chapterNumber = int.Parse(chapter);
+                    int verseNumber = int.Parse(verse);
+                    Reference manualReference = new(book, chapterNumber, verseNumber);
+                    Scripture manualScripture = new(manualReference, text);
 
-                    bool runningScripture = true;
-                    while(runningScripture)
+                    bool isScriptureRunning = true;
+                    while(isScriptureRunning)
                     {
                         Console.WriteLine();
-                        Console.WriteLine("1. Press Enter to continue or press \"exit\" to finish");
+                        Console.WriteLine("1. Press Enter to continue or type \"quit\" to finish");
                         Console.WriteLine();
                         string response = Console.ReadLine();
 
                             if(response == "")
                             {                                
-                                scriptureObjManual.HideRandomWords(3); 
+                                manualScripture.HideRandomWords(wordsToHide); 
                             }
-                            if(response.ToLower() == "exit" || scriptureObjManual.IsCompletelyHidden())
+                            if(response.ToLower() == "quit" || manualScripture.IsCompletelyHidden())
                             {           
-                               runningScripture = false;
-                               manualMode = false;                  
+                               isScriptureRunning = false;
+                               isManualMode = false;                  
                             }
         
                             Console.Clear();
-                            Console.Write(scriptureObjManual.GetDisplayText());
+                            Console.Write(manualScripture.GetDisplayText());
                         }
                     }
                     catch (FormatException)

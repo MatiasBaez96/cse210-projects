@@ -25,9 +25,17 @@ public class Word
         if(_isHidden)
         {
             returnValue = "";
-            foreach(char w in _text)
-            {
-                returnValue += "_";
+            foreach(char character in _text)
+            {   
+                if(character == ',' || character == ';' || character == '.')
+                {
+                    returnValue += character;
+                }
+                else
+                {
+                    returnValue += "_";    
+                }
+                
             }
         }
         return returnValue;
@@ -35,7 +43,7 @@ public class Word
 
    public void Show()
     {
-     //muestra la palabra
+    // show the word
      _isHidden = false; 
     }
 }
