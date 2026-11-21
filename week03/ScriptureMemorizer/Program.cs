@@ -1,5 +1,4 @@
 //Creativity: Random scripture selection from a list
-
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +7,7 @@ class Program
     static void Main(string[] args)
     {
         bool running = true;
-
+        bool manualMode = false;
         List<(string book, int chapter, int verse, string text)> scriptures = new()
         {
             ("1 Nefi", 3, 7,
@@ -45,31 +44,81 @@ class Program
         Scripture scriptureObj = new(referenceObj, chosen.text);
 
         Console.Clear();
-        Console.Write($"{referenceObj.GetDisplayText()}");
         Console.Write(scriptureObj.GetDisplayText());
 
         while (running)
         {
             Console.WriteLine();
-            Console.WriteLine("1. Press Enter to continue or press Esc to finish");
+            Console.WriteLine("1. Press Enter to continue or press \"exit\" to finish");
+            Console.WriteLine("2. Type \"2\" to enter your own scripture");
             Console.WriteLine();
-
-            ConsoleKeyInfo tecla = Console.ReadKey();
-
-            if (tecla.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                scriptureObj.HideRandomWords();
-                scriptureObj.HideRandomWords();
-                scriptureObj.HideRandomWords();
+            
+            //Agrego opcion para ingresar toda la informacion manual
+            string response = Console.ReadLine();
+            if(response == "")
+            {                                
+                scriptureObj.HideRandomWords(3); 
             }
-            if (tecla.Key == ConsoleKey.Escape || scriptureObj.IsCompletelyHidden())
+            if (response.ToLower() == "exit" || scriptureObj.IsCompletelyHidden())
             {
-                Console.Clear();
                 running = false;
             }
-            Console.Write($"{referenceObj.GetDisplayText()}");
-            Console.Write(scriptureObj.GetDisplayText());
+
+            Console.Clear();
+            Console.Write(scriptureObj.GetDisplayText());       
+
+            if(response == "2")
+            {   
+                Console.Clear();
+                running = false;
+                manualMode = true;     
+            }
         }
+    
+        while(manualMode)
+        {     
+            Console.Write("Book: ");
+            string book = Console.ReadLine();
+            Console.Write("Chapter: ");
+            string chapter = Console.ReadLine();
+            Console.Write("Verse: ");
+            string verse = Console.ReadLine();
+            Console.Write("Text: ");
+            string text = Console.ReadLine();  
+                    
+                try
+                {
+                    int chapterInt = int.Parse(chapter);
+                    int verseInt = int.Parse(verse);
+                    Reference referenceObjManual = new(book, chapterInt, verseInt);
+                    Scripture scriptureObjManual = new(referenceObjManual, text);
+
+                    bool runningScripture = true;
+                    while(runningScripture)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("1. Press Enter to continue or press \"exit\" to finish");
+                        Console.WriteLine();
+                        string response = Console.ReadLine();
+
+                            if(response == "")
+                            {                                
+                                scriptureObjManual.HideRandomWords(3); 
+                            }
+                            if(response.ToLower() == "exit" || scriptureObjManual.IsCompletelyHidden())
+                            {           
+                               runningScripture = false;
+                               manualMode = false;                  
+                            }
+        
+                            Console.Clear();
+                            Console.Write(scriptureObjManual.GetDisplayText());
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Chapter and verse must be numbers.");
+                    }  
+                }
     }
 }
