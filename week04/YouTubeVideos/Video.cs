@@ -3,9 +3,9 @@ public class Video
     private List<Comment> _comments = new();
     private string _title;
     private string _author;
-    private float _length;
+    private int _length;
 
-    public Video(string title, string author, float length)
+    public Video(string title, string author, int length)
     {
       _title = title;
       _author = author;
