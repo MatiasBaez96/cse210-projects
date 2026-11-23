@@ -1,15 +1,16 @@
 public class Comment
-{   
+{
     private string _name;
-    private string _comment;
-    public Comment(string name,string comment)
+    private string _text;
+
+    public Comment(string name, string text)
     {
         _name = name;
-        _comment = comment;
+        _text = text;
     }
+
     public string GetDisplayText()
     {
-        string display = $"{_name}:\n {_comment}";
-        return display;
+        return $"  {_name}: {_text}";
     }
 }

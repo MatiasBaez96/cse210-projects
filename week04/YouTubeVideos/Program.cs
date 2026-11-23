@@ -25,7 +25,6 @@ class Program
         videoLibrary.AddVideo(video2);
         videoLibrary.AddVideo(video3);
 
-        videoLibrary.GetDisplay();
-   }    
+        videoLibrary.Display();
+    }
 }
-
