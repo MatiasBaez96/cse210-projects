@@ -3,33 +3,39 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {   
-        Address address = new Address(3438, "Provo", "Utah", "EE.UU");
-        Customer customer1 = new Customer("Matias", address);
-        Order order = new Order(customer1);
-        
-        Address address2 = new Address(3438, "Lujan", "Buenos Aires", "Arg");
+    {
+        Address address1 = new Address("3438 S. 4421 W.", "Provo", "Utah", "USA");
+        Customer customer1 = new Customer("Matias", address1);
+        Order order1 = new Order(customer1);
+
+        Address address2 = new Address("Alvarado 120 Ruta 25", "Lujan", "Buenos Aires", "Argentina");
         Customer customer2 = new Customer("Gabriel", address2);
         Order order2 = new Order(customer2);
-       
-        Product playStation = new Product("Ps5", 4567, 600, 2);
+
+        Product playStation = new Product("PS5", 4567, 600, 2);
         Product sega = new Product("Sega", 4566, 20, 2);
-        
-        order.AddProduct(playStation);
-        order.AddProduct(sega);
-        order.CalculateTotalOrder();
-        Console.WriteLine($"{order.DisplayLabel()}");
-        
-        order2.AddProduct(sega);
-        order2.CalculateTotalOrder();
-        Console.WriteLine($"{order2.DisplayLabel()}");
+        Product xbox = new Product("Xbox Series X", 4568, 500, 1);
+        Product control = new Product("Control extra", 4570, 45, 2);
+        Product hdmi = new Product("Cable HDMI", 4571, 10, 3);
 
-        //ANOTAR EN LIBRETA:
-        //El 'Console.WriteLine' es mejor hacerlo fuera de las clases
-        //o metodos internos, es mejor hacerlo en el mMain o Program.cs,
-        //de lo contrario los metodos internos se vuelven menos reutilizables
+        order1.AddProduct(playStation);
+        order1.AddProduct(sega);
 
-        //TAMBIEN ANOTAR: cuando usar getters, solo cuando devuelve
-        //un unico valor y no tiene logica como condicionales, etc.
+        order2.AddProduct(xbox);
+        order2.AddProduct(control);
+        order2.AddProduct(hdmi);
+
+        DisplayOrder(order1);
+        DisplayOrder(order2);
+    }
+
+    static void DisplayOrder(Order order)
+    {
+        Console.WriteLine("----- PACKING LABEL -----");
+        Console.WriteLine(order.GetPackingLabel());
+        Console.WriteLine("----- SHIPPING LABEL -----");
+        Console.WriteLine(order.GetShippingLabel());
+        Console.WriteLine($"TOTAL COST: ${order.CalculateTotalCost():0.00}");
+        Console.WriteLine();
     }
 }

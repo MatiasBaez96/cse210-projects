@@ -1,59 +1,48 @@
+using System.Collections.Generic;
+
 public class Order
 {
-    private List<Product> _products = new();
+    private List<Product> _products = new List<Product>();
     private Customer _customer;
-    private float shippingCost;
-    private float _total;
+
     public Order(Customer customer)
     {
-       _customer = customer; 
+        _customer = customer;
     }
-     public void AddProduct(Product product)
-     {
-        _products.Add(product);
-     }
-    public void CalculateTotalOrder()
+
+    public void AddProduct(Product product)
     {
-        // calcula costo total de la orden
-        if(_customer.CustomerLocation())
-        { 
-            shippingCost = 5f;
-            foreach(Product product in _products)
-            {
-              _total += product._price * product._quantity + shippingCost;
-            }
-            Console.WriteLine($"He is in the country");
-        }
-        else
-        {
-            shippingCost = 35f; 
-            foreach(Product product in _products)
-            {
-              _total += product._price * product._quantity + shippingCost;
-            }
-            Console.WriteLine($"He is not in the country");
-        }
+        _products.Add(product);
     }
 
-    //devuelve string: 
-    // label 1: etiqueta de empaquetado
-    // label 2: etiqueta de envio
-    //devuelvo variables resultado y todo
-    public string DisplayLabel()
-    {   
-        //para datos de Address uso DisplayFunction
-        //para datos de Customer uso DisplayFunction
-        //ANOTAR LIBRETA: uso display en estas dos clases porque
-        //solo necesito leer la informacion
-        //En 'Product.cs' uso getters porqe necesito hacer calculos
-        //con esos datos.
+    public double CalculateTotalCost()
+    {
+        double total = 0;
 
-        string productLabel = "";
-        string customerLabel = $"{_customer.DisplayText()}";
-        foreach(Product product in _products)
+        foreach (Product product in _products)
         {
-          productLabel += $"\n Name: {product._name}\n Id: {product._id}";
+            total += product.GetTotalCost();
         }
-        return $"{customerLabel} {productLabel}\n Total: {_total}" ;
+
+        double shipping = _customer.IsInUSA() ? 5 : 35;
+
+        return total + shipping;
+    }
+
+    public string GetPackingLabel()
+    {
+        string label = "";
+
+        foreach (Product product in _products)
+        {
+            label += $"{product.GetName()} (ID: {product.GetId()})\n";
+        }
+
+        return label;
+    }
+
+    public string GetShippingLabel()
+    {
+        return _customer.GetShippingText();
     }
 }
