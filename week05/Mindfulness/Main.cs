@@ -2,7 +2,7 @@ public class Main
 {
     public void Run()
     {   
-        Activity activity =  new Activity();
+        Activity activity =  new Activity();//QUITAR
         BreathingActivity breathingActivity = new BreathingActivity();
 
         bool run = true;
