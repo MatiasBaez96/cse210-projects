@@ -2,8 +2,8 @@ public class Main
 {
     public void Run()
     {   
-        Activity activity =  new Activity();
         BreathingActivity breathingActivity = new BreathingActivity();
+        ReflectingActivity reflectingActivity = new ReflectingActivity();
 
         bool run = true;
         string response;
@@ -26,7 +26,7 @@ public class Main
             }
             else if(response == "2")
             {
-                
+                reflectingActivity.Run();
             }
             else if(response == "3")
             {
