@@ -2,13 +2,14 @@ public class Main
 {
     public void Run()
     {   
-        Activity activity =  new Activity();//QUITAR
-        BreathingActivity breathingActivity = new BreathingActivity();
 
-        bool run = true;
+        BreathingActivity breathingActivity = new BreathingActivity();
+        ReflectingActivity reflectingActivity = new ReflectingActivity();
+
+        bool isRunning = true;
         string response;
 
-        while(run)
+        while(isRunning)
         {   
             Console.Clear();
             Console.WriteLine("Menu Options:"); 
@@ -16,7 +17,7 @@ public class Main
             Console.WriteLine("  2. Start reflecting activity"); 
             Console.WriteLine("  3. Start listing activity");
             Console.WriteLine("  4. Quit");
-            Console.WriteLine("Select a choice from the menu: "); 
+            Console.Write("Select a choice from the menu: "); 
 
             response = Console.ReadLine();
 
@@ -26,7 +27,7 @@ public class Main
             }
             else if(response == "2")
             {
-                
+                reflectingActivity.Run();
             }
             else if(response == "3")
             {
@@ -34,7 +35,7 @@ public class Main
             }
             else if(response == "4")
             {
-
+              isRunning = false;
             }
             else
             {

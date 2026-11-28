@@ -2,26 +2,30 @@ using System.Net.NetworkInformation;
 
 public class Activity
 {  
-    protected string _name;
-    protected string _description;
-    protected int _duration; 
-    protected int _countdown; 
-    protected int _spinnerDuration;
-    
-    private List<string> _animationStrings = new();
-    public Activity()
-    { 
-      _spinnerDuration = 6;   
+    private string _name;
+    private string _description;
+    private List<string> _animationStrings = new()
+    {
+        "|",
+        "/",
+        "-",
+        "\\",
+        "|",
+        "/",
+        "-",
+        "\\",
+        "|"
+    };
 
-      _animationStrings.Add("|");
-      _animationStrings.Add("/");
-      _animationStrings.Add("-");
-      _animationStrings.Add("\\");
-      _animationStrings.Add("|");
-      _animationStrings.Add("/");
-      _animationStrings.Add("-");
-      _animationStrings.Add("\\");
-      _animationStrings.Add("|");
+    protected int _duration; 
+    protected int _countdown = 4; 
+    protected int _spinnerDuration = 5;
+    
+    
+    public Activity(string name, string description)
+    {
+       _name = name; 
+       _description = description;  
     }
     public void DisplayStartingMessage()
     {
@@ -54,4 +58,16 @@ public class Activity
          Console.Write("\b \b");
         }                      
     }
+
+    public void GetReady()
+    {
+        Console.Clear();
+        Console.WriteLine("Get Ready...");
+    }
+
+    public void FinishActivity()
+   {
+    Console.WriteLine("");
+    Console.WriteLine("Well done!!");    
+   }
 }

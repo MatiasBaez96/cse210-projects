@@ -8,10 +8,10 @@ public class ListingActivity: Activity
     private List<string> _prompts;
     private int _count;
   
-    public ListingActivity()
+    public ListingActivity(string name, string description): base(name, description)
     {
         
-    } 
+    }
      
     public void Run()
     {
